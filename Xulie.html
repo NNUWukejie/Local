@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title> new document </title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+ </head>
+
+ <body>
+  
+ <script>
+
+
+ function swap(arr,i,j) {  
+    if(i!=j) {  
+        var temp=arr[i];  
+        arr[i]=arr[j];  
+        arr[j]=temp;  
+    }  
+}  
+var count=0;  
+function show(arr) {  
+    document.write("工作序列"+ ++count+"</sub>: "+arr+"<br />");  
+}  
+function perm(arr,result) {  
+   
+    (function fn(n) { //为第n个位置选择元素  
+        for(var i=n;i<arr.length;i++) {  
+            swap(arr,i,n);  
+            if(n+1<arr.length-1) //判断数组中剩余的待全排列的元素是否大于1个  
+                fn(n+1); //从第n+1个下标进行全排列  
+            else 
+                show(arr); //显示一组结果  
+				for(var ii=0;ii<arr.length;i++)
+				{
+				   result[n][ii]=arr[ii];
+				}
+            swap(arr,i,n);  
+        }  
+    })(0);  
+}  
+var result=new Array();
+for(var k=0;k<24;k++)
+{
+  result[k]=new Array();
+}
+perm(["Work1","Work2","Work3","Work4"],result);  
+show(result);
+
+ </script>
+
+ </body>
+</html>
