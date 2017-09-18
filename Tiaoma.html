@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title> new document </title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+ </head>
+
+
+ <style>
+   .wkj{
+     color:blue;
+	 font-size:10pt;
+
+   } 
+   
+}
+
+   link visited hover active
+ </style>
+ <body>
+
+ <script>
+document.write("<h1>跳马</h1>");
+//document.write("<p>这是一个段落。</p>");
+</script>
+
+
+ <!--<input type="button" value="请输入棋盘的总行数"/>//-->
+ <h2 class="wkj">请输入棋盘的总行数</h2>
+ <input id="inputChess_X" type="text" name="inputChess_X"/>
+ <input type="button" value="确定"/>
+ <h2 class="wkj">请输入棋盘的总列数</h2>
+ <input id="inputChess_Y" type="text" name="inputChess_Y"/>
+ <input type="button" value="确定"/>
+ <h2 class="wkj">请输入起始点的行号</h2>
+ <input id="startChess_X" type="text" name="startChess_X"/>
+ <input type="button" value="确定"/>
+ <h2 class="wkj">请输入起始点的列号</h2>
+ <input id="startChess_Y" type="text" name="startChess_Y"/>
+ <input type="button" value="确定"/>
+
+ 
+
+
+
+
+<script>
+
+ var iptTxt1 = document.getElementById('inputChess_X');
+ var Chess_X = iptTxt1.value;
+ var iptTxt2 = document.getElementById('inputChess_Y');
+ var Chess_Y = iptTxt2.value;
+ var iptTxt3 = document.getElementById('startChess_X');
+ var Start_X = iptTxt3.value;
+ var iptTxt4 = document.getElementById('startChess_Y');
+ var Start_Y = iptTxt4.value;
+
+
+ var movex=new Array(-1,1,2,2,1,-1,-2,-2);
+ var movey=new Array(2,2,1,-1,-2,-2,-1,1);
+
+ //定义坐标类,用于存储当前的位置坐标信息
+ var location={X:Start_X,Y:Start_Y};
+ //var location={X:3,Y:3};
+ //var location=new Array(3,3);
+
+ MOVE(location,Chess_X,Chess_Y,Start_X,Start_Y);
+
+
+ function MOVE(location,inputChess_X, inputChess_Y,startChess_X,startChess_Y){
+   var e=0;
+   var d=0;//点的个数
+
+   //创建位置坐标数组,用于存储坐标
+   var record1= new Array();
+   for (var i=0;i<(inputChess_X*inputChess_Y);i++ )
+   {
+        record1[i]=0;
+   }
+   var record2= new Array();
+   for (var i=0;i<(inputChess_X*inputChess_Y);i++ )
+   {
+        record2[i]=0;
+   }
+   //
+
+   for(var k=0;k<8;k++)
+   {
+      location.X=location.X+movex[k];
+	  location.Y=location.Y+movey[k];
+
+	  if((location.X>inputChess_X||location.X<0)||(location.Y>inputChess_Y||location.Y<0))
+	  {
+	    location.X=location.X-movex[k];
+	    location.Y=location.Y-movey[k]; 
+	  }
+
+	  for(var ii=0;ii<d;i++)
+	  {
+	     if((location.X==record1[ii])&&(location.Y==record2[ii]))
+		 {
+		    e=1;
+			break;
+		 }
+	  }
+
+	  if(e==1)
+	  {
+	     e=0;
+		 continue;
+	  }
+
+	  record1[d]==location.X;
+	  record2[d]==location.Y;
+
+	  if((record1[d]==startChess_X)&&(record2[d]==startChess_Y))
+	  {
+	     for(var kk=0;k<=d;k++)
+		 {
+		    document.write("("+record1[kk]+","+record2[kk]+")");
+			if(kk==d-1)
+			{
+			   document.write("/n");
+			}
+		 }
+
+		 for (var ll=0;ll<d ;ll++ )
+		 {
+		    record1[ll]=0;
+			record2[ll]=0;
+			return 0;
+		 }
+
+		 d++;
+		 return 0;
+	  }
+	  else
+	  {
+	     d++;
+		 return MOVE(location,inputChess_X, inputChess_Y,startChess_X,startChess_Y);
+	  }
+   }
+ }//函数结束
+
+
+
+</script>
+ </body>
+</html>
