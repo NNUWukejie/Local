@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title> Hello World </title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+ </head>
+
+ <body>
+   <div id="div1" />
+   <script>
+    //创建标题
+    document.write("<h1>Basic Paint</h1>");
+    //加入界面
+    var element = document.getElementById("div1");
+    
+    //创建段落
+    var c = document.createElement("canvas");
+    var ctx = c.getContext("2d");
+    ctx.fillstyle = "#FFFF00";
+    ctx.fillRect(0,0,150,75);
+    //ctx.fillStyle = "#00FF00";
+    ctx.moveTo(0,0);
+    ctx.lineTo(300,300);
+    ctx.stroke();
+
+    element.appendChild(c);
+
+    window.onresize = click1;
+
+    function click1(id){
+        var element = document.getElementById("div1");
+        var w = element.clientWidth;
+        var h = element.clientHeight;
+        console.log("w: %d, h: %d",w,h);
+    }
+   </script>
+ </body>
+</html>
